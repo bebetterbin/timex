@@ -23,6 +23,22 @@ func TestStartTimeOfDay(t *testing.T) {
 	assert.Zero(startTimeOfDay.Nanosecond())
 }
 
+func TestStartTimeOfWeek(t *testing.T) {
+	assert := assert.New(t)
+
+	time, err := time.Parse(time.RFC3339, "2021-02-03T04:05:06+08:00")
+	assert.Nil(err)
+
+	startTimeOfWeek := StartTimeOfWeek(time, CST)
+	assert.Equal(2021, startTimeOfWeek.Year())
+	assert.EqualValues(2, startTimeOfWeek.Month())
+	assert.Equal(1, startTimeOfWeek.Day())
+	assert.Zero(startTimeOfWeek.Hour())
+	assert.Zero(startTimeOfWeek.Minute())
+	assert.Zero(startTimeOfWeek.Second())
+	assert.Zero(startTimeOfWeek.Nanosecond())
+}
+
 func TestStartTimeOfMonth(t *testing.T) {
 	assert := assert.New(t)
 
