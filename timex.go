@@ -20,3 +20,9 @@ func StartTimeOfQuarter(t time.Time, loc *time.Location) time.Time {
 	month := tInLoc.Month()
 	return time.Date(tInLoc.Year(), ((month-1)/3)*3+1, 1, 0, 0, 0, 0, loc)
 }
+
+// StartTimeOfYear return the 00:00 time of the first day of the year of the t in loc.
+func StartTimeOfYear(t time.Time, loc *time.Location) time.Time {
+	tInLoc := t.In(loc)
+	return time.Date(tInLoc.Year(), 1, 1, 0, 0, 0, 0, loc)
+}
