@@ -38,3 +38,19 @@ func TestStartTimeOfMonth(t *testing.T) {
 	assert.Zero(startTimeOfMonth.Second())
 	assert.Zero(startTimeOfMonth.Nanosecond())
 }
+
+func TestStartTimeOfQuarter(t *testing.T) {
+	assert := assert.New(t)
+
+	time, err := time.Parse(time.RFC3339, "2021-02-03T04:05:06+08:00")
+	assert.Nil(err)
+
+	startTimeOfQuarter := StartTimeOfQuarter(time, CST)
+	assert.Equal(2021, startTimeOfQuarter.Year())
+	assert.EqualValues(1, startTimeOfQuarter.Month())
+	assert.Equal(1, startTimeOfQuarter.Day())
+	assert.Zero(startTimeOfQuarter.Hour())
+	assert.Zero(startTimeOfQuarter.Minute())
+	assert.Zero(startTimeOfQuarter.Second())
+	assert.Zero(startTimeOfQuarter.Nanosecond())
+}
